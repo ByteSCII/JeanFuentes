@@ -17,32 +17,69 @@
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            padding: 0 10%;
+            flex-direction: column;
+            justify-content: center;
+            gap: 80px;
         }
 
-        .typing-container {
-            margin-bottom: 50px;
+        .text-section {
+            text-align: center;
+            width: 100%;
+        }
+
+        .image-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #1a1a1a, #000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .profile-image::before {
+            content: "IMAGEN PROFESIONAL";
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         .typing-text {
-            font-size: 3rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            line-height: 1.2;
-            color: #d4af37;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #d4af37 0%, #8b6914 25%, #000 50%, #8b6914 75%, #d4af37 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
             text-transform: uppercase;
             letter-spacing: 3px;
-            position: relative;
             display: inline-block;
             white-space: nowrap;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .typing-text .letter {
@@ -59,9 +96,9 @@
             background: linear-gradient(
                 90deg,
                 transparent 0%,
-                #ffffff 30%,
-                #f0f0f0 50%,
-                #ffffff 70%,
+                #ffffff 20%,
+                #f8f8f8 50%,
+                #ffffff 80%,
                 transparent 100%
             );
             -webkit-background-clip: text;
@@ -69,8 +106,8 @@
             background-size: 200% 100%;
             background-position: -150% 0;
             opacity: 0;
-            animation: flashlight 4s ease-in-out infinite;
-            animation-delay: calc(var(--letter-index) * 0.3s);
+            animation: flashlight 5s ease-in-out infinite;
+            animation-delay: calc(var(--letter-index) * 0.4s);
         }
 
         @keyframes flashlight {
@@ -89,11 +126,11 @@
 
         .cursor {
             display: inline-block;
-            width: 3px;
-            background: #d4af37;
-            margin-left: 4px;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #8b6914);
+            margin-left: 8px;
             animation: blink 1.2s infinite;
-            height: 50px;
+            height: 70px;
             vertical-align: middle;
         }
 
@@ -102,31 +139,41 @@
             50% { opacity: 0; }
         }
 
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(45deg, #1a1a1a, #000);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #d4af37;
-            margin: 0 auto;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
-
-        .profile-image::before {
-            content: "";
-            color: #d4af37;
-            font-size: 0.9rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
         /* Responsive */
+        @media (max-width: 1200px) {
+            .typing-text {
+                font-size: 4rem;
+            }
+            
+            .profile-image {
+                width: 350px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 100px 5% 50px;
+                gap: 60px;
+            }
+            
+            .typing-text {
+                font-size: 3.2rem;
+            }
+            
+            .profile-image {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .cursor {
+                height: 55px;
+            }
+        }
+
         @media (max-width: 768px) {
             .typing-text {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
                 letter-spacing: 2px;
             }
             
@@ -136,19 +183,23 @@
             }
             
             .cursor {
-                height: 40px;
+                height: 45px;
             }
         }
 
         @media (max-width: 480px) {
             .typing-text {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 letter-spacing: 1px;
             }
             
             .profile-image {
                 width: 200px;
                 height: 200px;
+            }
+            
+            .profile-image::before {
+                font-size: 0.9rem;
             }
             
             .cursor {
@@ -159,11 +210,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="typing-container">
+        <div class="text-section">
             <div class="typing-text" id="typing-text"></div>
         </div>
         
-        <div class="profile-image"></div>
+        <div class="image-section">
+            <div class="profile-image"></div>
+        </div>
     </div>
 
     <script>
