@@ -23,11 +23,12 @@
             display: flex;
             min-height: 100vh;
             align-items: center;
-            padding: 0 10%;
+            padding: 0 5%;
         }
 
         .text-section {
             flex: 1;
+            padding-right: 50px;
         }
 
         .image-section {
@@ -35,114 +36,58 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .profile-image {
-            width: 450px;
-            height: 450px;
-            background: linear-gradient(45deg, #0a0a0a, #000);
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #1a1a1a, #000);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #333;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
         }
 
         .profile-image::before {
             content: "IMAGEN PROFESIONAL";
-            color: #666;
+            color: #d4af37;
             font-size: 1.1rem;
             font-weight: bold;
-            letter-spacing: 3px;
-            z-index: 2;
-        }
-
-        .profile-image::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                transparent, 
-                transparent, 
-                transparent, 
-                #333
-            );
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .typing-container {
-            position: relative;
-            margin-bottom: 50px;
+            letter-spacing: 2px;
         }
 
         .typing-text {
             font-size: 5rem;
             font-weight: 900;
+            margin-bottom: 30px;
+            min-height: 120px;
             line-height: 1.1;
-            color: #222;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            position: relative;
-        }
-
-        .typing-text .letter {
-            display: inline-block;
-            position: relative;
-        }
-
-        .typing-text .letter::after {
-            content: attr(data-letter);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: transparent;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                #e0e0e0 20%,
-                #ffffff 50%,
-                #e0e0e0 80%,
-                transparent 100%
-            );
+            background: linear-gradient(135deg, #d4af37 0%, #8b6914 25%, #000 50%, #8b6914 75%, #d4af37 100%);
             -webkit-background-clip: text;
             background-clip: text;
-            background-size: 200% 100%;
-            background-position: -100% 0;
-            opacity: 0;
-            animation: flashlight 3s ease-in-out infinite;
-            animation-delay: calc(var(--letter-index) * 0.1s);
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        @keyframes flashlight {
-            0%, 100% {
-                opacity: 0;
-                background-position: -100% 0;
-            }
-            10%, 90% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 1;
-                background-position: 200% 0;
-            }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .cursor {
             display: inline-block;
             width: 4px;
-            background: #666;
-            margin-left: 5px;
+            background: linear-gradient(to bottom, #d4af37, #8b6914);
+            margin-left: 8px;
             animation: blink 1s infinite;
             height: 80px;
-            vertical-align: middle;
         }
 
         @keyframes blink {
@@ -150,22 +95,65 @@
             50% { opacity: 0; }
         }
 
+        .arrow-container {
+            position: absolute;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .elegant-arrow {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            animation: floatArrow 3s ease-in-out infinite;
+        }
+
+        .elegant-arrow::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-top: 4px solid #d4af37;
+            border-right: 4px solid #d4af37;
+            transform: rotate(45deg);
+            top: 20px;
+            left: 0;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+        }
+
+        .elegant-arrow::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: #d4af37;
+            top: 58px;
+            left: 0;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+        }
+
+        @keyframes floatArrow {
+            0%, 100% { 
+                transform: translateX(0px) translateY(-50%);
+            }
+            50% { 
+                transform: translateX(15px) translateY(-50%);
+            }
+        }
+
         .content-placeholder {
             margin-top: 40px;
-            color: #444;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            border-left: 2px solid #333;
-            padding-left: 25px;
+            color: #d4af37;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            border-left: 3px solid #d4af37;
+            padding-left: 20px;
         }
 
         .content-placeholder p {
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .content-placeholder p:hover {
-            color: #666;
+            margin-bottom: 15px;
+            opacity: 0.8;
         }
 
         /* Responsive */
@@ -173,17 +161,17 @@
             .typing-text {
                 font-size: 4rem;
             }
-            
-            .profile-image {
-                width: 400px;
-                height: 400px;
-            }
         }
 
         @media (max-width: 968px) {
             .container {
                 flex-direction: column;
                 padding: 100px 5% 50px;
+            }
+            
+            .text-section {
+                padding-right: 0;
+                margin-bottom: 50px;
                 text-align: center;
             }
             
@@ -194,21 +182,18 @@
             .profile-image {
                 width: 350px;
                 height: 350px;
-                margin-top: 50px;
             }
             
-            .content-placeholder {
-                border-left: none;
-                border-top: 2px solid #333;
-                padding-left: 0;
-                padding-top: 25px;
+            .arrow-container {
+                left: 50%;
+                top: -60px;
+                transform: translateX(-50%) rotate(90deg);
             }
         }
 
         @media (max-width: 768px) {
             .typing-text {
                 font-size: 2.8rem;
-                letter-spacing: 2px;
             }
             
             .profile-image {
@@ -216,15 +201,26 @@
                 height: 300px;
             }
             
-            .cursor {
+            .elegant-arrow {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .elegant-arrow::before {
+                width: 60px;
                 height: 60px;
+                top: 20px;
+            }
+            
+            .elegant-arrow::after {
+                width: 80px;
+                top: 50px;
             }
         }
 
         @media (max-width: 480px) {
             .typing-text {
-                font-size: 2rem;
-                letter-spacing: 1px;
+                font-size: 2.2rem;
             }
             
             .profile-image {
@@ -232,12 +228,8 @@
                 height: 250px;
             }
             
-            .content-placeholder {
-                font-size: 1.1rem;
-            }
-            
             .cursor {
-                height: 45px;
+                height: 60px;
             }
         }
     </style>
@@ -245,40 +237,48 @@
 <body>
     <div class="container">
         <div class="text-section">
-            <div class="typing-container">
-                <div class="typing-text" id="typing-text"></div>
-            </div>
+            <div class="typing-text" id="typing-text"></div>
             
             <div class="content-placeholder">
-                <p>• Desarrollo de sistemas digitales escalables</p>
-                <p>• Experiencia en tecnologías modernas</p>
-                <p>• Soluciones innovadoras y eficientes</p>
-                <p>• Enfoque en calidad y performance</p>
+                <p>• Especialista en desarrollo de sistemas digitales</p>
+                <p>• Experiencia en tecnologías modernas y escalables</p>
+                <p>• Enfoque en soluciones innovadoras y eficientes</p>
+                <p>• Comprometido con la excelencia técnica</p>
             </div>
         </div>
         
         <div class="image-section">
+            <div class="arrow-container">
+                <div class="elegant-arrow"></div>
+            </div>
+            
             <div class="profile-image"></div>
         </div>
     </div>
 
     <script>
+        // Animación de escritura
         const text = "INFORMACIÓN SOBRE MÍ";
         const typingElement = document.getElementById('typing-text');
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
         
-        // Crear las letras con el efecto de linterna
-        function createLetters() {
-            let html = '';
-            for (let i = 0; i < text.length; i++) {
-                html += `<span class="letter" data-letter="${text[i]}" style="--letter-index: ${i}">${text[i]}</span>`;
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                typingElement.innerHTML = text.substring(0, i+1);
+                typingElement.appendChild(cursor);
+                i++;
+                setTimeout(typeWriter, 120);
+            } else {
+                typingElement.appendChild(cursor);
             }
-            html += '<span class="cursor"></span>';
-            typingElement.innerHTML = html;
         }
         
-        // Iniciar cuando la página cargue
+        // Iniciar la animación cuando la página cargue
         window.onload = function() {
-            createLetters();
+            setTimeout(typeWriter, 500);
         };
     </script>
 </body>
