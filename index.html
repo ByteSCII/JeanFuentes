@@ -24,6 +24,8 @@
             min-height: 100vh;
             align-items: center;
             padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .text-section {
@@ -36,12 +38,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
         .profile-image {
-            width: 400px;
-            height: 400px;
+            width: 350px;
+            height: 350px;
             background: linear-gradient(45deg, #1a1a1a, #000);
             border-radius: 50%;
             display: flex;
@@ -54,16 +55,17 @@
         .profile-image::before {
             content: "IMAGEN PROFESIONAL";
             color: #d4af37;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
             letter-spacing: 2px;
+            text-align: center;
+            padding: 0 10px;
         }
 
         .typing-text {
-            font-size: 5rem;
+            font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 30px;
-            min-height: 120px;
             line-height: 1.1;
             background: linear-gradient(135deg, #d4af37 0%, #8b6914 25%, #000 50%, #8b6914 75%, #d4af37 100%);
             -webkit-background-clip: text;
@@ -73,6 +75,8 @@
             animation: gradientShift 4s ease infinite;
             text-transform: uppercase;
             letter-spacing: 3px;
+            white-space: nowrap;
+            display: inline-block;
         }
 
         @keyframes gradientShift {
@@ -87,7 +91,8 @@
             background: linear-gradient(to bottom, #d4af37, #8b6914);
             margin-left: 8px;
             animation: blink 1s infinite;
-            height: 80px;
+            height: 60px;
+            vertical-align: middle;
         }
 
         @keyframes blink {
@@ -95,132 +100,32 @@
             50% { opacity: 0; }
         }
 
-        .arrow-container {
-            position: absolute;
-            left: -80px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .elegant-arrow {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            animation: floatArrow 3s ease-in-out infinite;
-        }
-
-        .elegant-arrow::before {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            border-top: 4px solid #d4af37;
-            border-right: 4px solid #d4af37;
-            transform: rotate(45deg);
-            top: 20px;
-            left: 0;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
-        }
-
-        .elegant-arrow::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 4px;
-            background: #d4af37;
-            top: 58px;
-            left: 0;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
-        }
-
-        @keyframes floatArrow {
-            0%, 100% { 
-                transform: translateX(0px) translateY(-50%);
-            }
-            50% { 
-                transform: translateX(15px) translateY(-50%);
-            }
-        }
-
-        .content-placeholder {
-            margin-top: 40px;
-            color: #d4af37;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            border-left: 3px solid #d4af37;
-            padding-left: 20px;
-        }
-
-        .content-placeholder p {
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-
         /* Responsive */
-        @media (max-width: 1200px) {
-            .typing-text {
-                font-size: 4rem;
-            }
-        }
-
         @media (max-width: 968px) {
             .container {
                 flex-direction: column;
-                padding: 100px 5% 50px;
+                padding: 80px 5% 50px;
+                gap: 50px;
             }
             
             .text-section {
                 padding-right: 0;
-                margin-bottom: 50px;
                 text-align: center;
             }
             
             .typing-text {
-                font-size: 3.5rem;
-            }
-            
-            .profile-image {
-                width: 350px;
-                height: 350px;
-            }
-            
-            .arrow-container {
-                left: 50%;
-                top: -60px;
-                transform: translateX(-50%) rotate(90deg);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .typing-text {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .profile-image {
                 width: 300px;
                 height: 300px;
             }
-            
-            .elegant-arrow {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .elegant-arrow::before {
-                width: 60px;
-                height: 60px;
-                top: 20px;
-            }
-            
-            .elegant-arrow::after {
-                width: 80px;
-                top: 50px;
-            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 768px) {
             .typing-text {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .profile-image {
@@ -229,7 +134,27 @@
             }
             
             .cursor {
-                height: 60px;
+                height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-text {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .profile-image {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .profile-image::before {
+                font-size: 0.9rem;
+            }
+            
+            .cursor {
+                height: 40px;
             }
         }
     </style>
@@ -238,20 +163,9 @@
     <div class="container">
         <div class="text-section">
             <div class="typing-text" id="typing-text"></div>
-            
-            <div class="content-placeholder">
-                <p>• Especialista en desarrollo de sistemas digitales</p>
-                <p>• Experiencia en tecnologías modernas y escalables</p>
-                <p>• Enfoque en soluciones innovadoras y eficientes</p>
-                <p>• Comprometido con la excelencia técnica</p>
-            </div>
         </div>
         
         <div class="image-section">
-            <div class="arrow-container">
-                <div class="elegant-arrow"></div>
-            </div>
-            
             <div class="profile-image"></div>
         </div>
     </div>
