@@ -244,52 +244,6 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
         }
 
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: floatElement 3s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            width: 20px;
-            height: 20px;
-            top: 10%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 15px;
-            height: 15px;
-            top: 60%;
-            left: 10%;
-            animation-delay: 0.5s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 25px;
-            height: 25px;
-            top: 30%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-
-        @keyframes floatElement {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.1); }
-        }
-
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -326,11 +280,11 @@
             100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
         }
 
-        /* Responsive */
+        /* Responsive - ORDEN CORREGIDO */
         @media (max-width: 968px) {
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 50px;
+                gap: 40px;
                 text-align: center;
             }
 
@@ -341,10 +295,30 @@
             .profile-container {
                 width: 300px;
                 height: 300px;
+                order: 2; /* Imagen después del título */
+            }
+
+            .text-content {
+                order: 1; /* Texto primero */
+            }
+
+            .description {
+                order: 3; /* Descripción después de la imagen */
+                margin: 30px auto;
             }
 
             .cta-buttons {
+                order: 4; /* Botones al final */
                 justify-content: center;
+                flex-wrap: nowrap;
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 14px 25px;
+                font-size: 1rem;
+                flex: 1;
+                max-width: 200px;
             }
         }
 
@@ -355,6 +329,7 @@
 
             .title {
                 font-size: 1.2rem;
+                margin-bottom: 20px;
             }
 
             .profile-container {
@@ -362,14 +337,30 @@
                 height: 250px;
             }
 
-            .btn {
-                padding: 14px 25px;
+            .description {
                 font-size: 1rem;
+                margin: 20px auto;
             }
 
             .cta-buttons {
+                gap: 10px;
+            }
+
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .btn {
+                max-width: 250px;
+                width: 100%;
             }
         }
     </style>
@@ -383,25 +374,24 @@
                     <p class="greeting">Hola, soy</p>
                     <h1 class="name">Jean Fuentes</h1>
                     <h2 class="title">Desarrollador de Sistemas Digitales</h2>
-                    <p class="description">
-                        Especializado en crear soluciones web innovadoras y eficientes. 
-                        Transformo ideas en experiencias digitales excepcionales.
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="#proyectos" class="btn btn-3d">Ver Proyectos</a>
-                        <a href="#contacto" class="btn btn-outline-3d">Contáctame</a>
-                    </div>
+                    <!-- La imagen se moverá aquí en móvil -->
                 </div>
                 
                 <div class="image-content">
                     <div class="profile-container">
                         <img src="./images/perfil.png" alt="Jean Fuentes" class="profile-image" onerror="this.style.display='none'">
-                        <div class="floating-elements">
-                            <div class="floating-element"></div>
-                            <div class="floating-element"></div>
-                            <div class="floating-element"></div>
-                        </div>
                     </div>
+                </div>
+
+                <!-- Descripción y botones se reordenan en móvil -->
+                <div class="description">
+                    Especializado en crear soluciones web innovadoras y eficientes. 
+                    Transformo ideas en experiencias digitales excepcionales.
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#proyectos" class="btn btn-3d">Ver Proyectos</a>
+                    <a href="#contacto" class="btn btn-outline-3d">Contáctame</a>
                 </div>
             </div>
         </div>
