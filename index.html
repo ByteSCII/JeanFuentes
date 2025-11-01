@@ -280,11 +280,11 @@
             100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
         }
 
-        /* Responsive - ORDEN CORREGIDO */
+        /* Responsive - SOLO MÓVIL */
         @media (max-width: 968px) {
             .hero-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
                 text-align: center;
             }
 
@@ -295,20 +295,9 @@
             .profile-container {
                 width: 300px;
                 height: 300px;
-                order: 2; /* Imagen después del título */
-            }
-
-            .text-content {
-                order: 1; /* Texto primero */
-            }
-
-            .description {
-                order: 3; /* Descripción después de la imagen */
-                margin: 30px auto;
             }
 
             .cta-buttons {
-                order: 4; /* Botones al final */
                 justify-content: center;
                 flex-wrap: nowrap;
                 gap: 15px;
@@ -374,24 +363,20 @@
                     <p class="greeting">Hola, soy</p>
                     <h1 class="name">Jean Fuentes</h1>
                     <h2 class="title">Desarrollador de Sistemas Digitales</h2>
-                    <!-- La imagen se moverá aquí en móvil -->
+                    <p class="description">
+                        Especializado en crear soluciones web innovadoras y eficientes. 
+                        Transformo ideas en experiencias digitales excepcionales.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#proyectos" class="btn btn-3d">Ver Proyectos</a>
+                        <a href="#contacto" class="btn btn-outline-3d">Contáctame</a>
+                    </div>
                 </div>
                 
                 <div class="image-content">
                     <div class="profile-container">
                         <img src="./images/perfil.png" alt="Jean Fuentes" class="profile-image" onerror="this.style.display='none'">
                     </div>
-                </div>
-
-                <!-- Descripción y botones se reordenan en móvil -->
-                <div class="description">
-                    Especializado en crear soluciones web innovadoras y eficientes. 
-                    Transformo ideas en experiencias digitales excepcionales.
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="#proyectos" class="btn btn-3d">Ver Proyectos</a>
-                    <a href="#contacto" class="btn btn-outline-3d">Contáctame</a>
                 </div>
             </div>
         </div>
