@@ -3,16 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JeanFuentes - Portafolio</title>
+    <title>Efecto Scroll Animado</title>
     <style>
-        body {
-            background-color: #000000;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .seccion {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            transition: all 0.8s ease-out;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Colores diferentes para cada sección */
+        #seccion1 { background: #1a1a1a; }
+        #seccion2 { background: #2d2d2d; }
+        #seccion3 { background: #404040; }
+        #seccion4 { background: #535353; }
     </style>
 </head>
 <body>
-    <!-- Página completamente negra -->
+    <div id="seccion1" class="seccion">Sección 1</div>
+    <div id="seccion2" class="seccion">Sección 2</div>
+    <div id="seccion3" class="seccion">Sección 3</div>
+    <div id="seccion4" class="seccion">Sección 4</div>
+
+    <script>
+        // Detectar cuando las secciones entran en la pantalla
+        const secciones = document.querySelectorAll('.seccion');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // Se activa cuando el 10% del elemento es visible
+        });
+
+        secciones.forEach(seccion => {
+            observer.observe(seccion);
+        });
+    </script>
 </body>
 </html>
