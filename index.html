@@ -42,34 +42,52 @@
         .profile-image {
             width: 400px;
             height: 400px;
-            background: linear-gradient(45deg, #333, #000);
+            background: linear-gradient(45deg, #1a1a1a, #000);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid #fff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
         }
 
         .profile-image::before {
-            content: "Imagen de Perfil";
-            color: #888;
-            font-size: 1.2rem;
+            content: "IMAGEN PROFESIONAL";
+            color: #d4af37;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         .typing-text {
-            font-size: 4rem;
-            font-weight: bold;
+            font-size: 5rem;
+            font-weight: 900;
             margin-bottom: 30px;
             min-height: 120px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #d4af37 0%, #8b6914 25%, #000 50%, #8b6914 75%, #d4af37 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 4s ease infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .cursor {
             display: inline-block;
-            width: 3px;
-            background-color: #fff;
-            margin-left: 5px;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #8b6914);
+            margin-left: 8px;
             animation: blink 1s infinite;
+            height: 80px;
         }
 
         @keyframes blink {
@@ -79,61 +97,72 @@
 
         .arrow-container {
             position: absolute;
-            left: -100px;
+            left: -80px;
             top: 50%;
             transform: translateY(-50%);
         }
 
-        .arrow-3d {
+        .elegant-arrow {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            animation: floatArrow 3s ease-in-out infinite;
+        }
+
+        .elegant-arrow::before {
+            content: '';
+            position: absolute;
             width: 80px;
             height: 80px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: float 3s ease-in-out infinite, point 2s ease-in-out infinite;
+            border-top: 4px solid #d4af37;
+            border-right: 4px solid #d4af37;
+            transform: rotate(45deg);
+            top: 20px;
+            left: 0;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
         }
 
-        .arrow-3d::before {
+        .elegant-arrow::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 40px solid transparent;
-            border-right: 40px solid transparent;
-            border-top: 60px solid #fff;
-            transform: translateZ(20px);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            width: 100px;
+            height: 4px;
+            background: #d4af37;
+            top: 58px;
+            left: 0;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
         }
 
-        .arrow-3d::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 60px;
-            background: #fff;
-            top: 60px;
-            left: 30px;
-            transform: translateZ(15px);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotateX(0deg); }
-            50% { transform: translateY(-20px) rotateX(10deg); }
-        }
-
-        @keyframes point {
-            0%, 100% { transform: translateX(0px); }
-            50% { transform: translateX(10px); }
+        @keyframes floatArrow {
+            0%, 100% { 
+                transform: translateX(0px) translateY(-50%);
+            }
+            50% { 
+                transform: translateX(15px) translateY(-50%);
+            }
         }
 
         .content-placeholder {
-            margin-top: 30px;
-            color: #888;
-            font-size: 1.1rem;
+            margin-top: 40px;
+            color: #d4af37;
+            font-size: 1.2rem;
             line-height: 1.6;
+            border-left: 3px solid #d4af37;
+            padding-left: 20px;
+        }
+
+        .content-placeholder p {
+            margin-bottom: 15px;
+            opacity: 0.8;
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .typing-text {
+                font-size: 4rem;
+            }
+        }
+
         @media (max-width: 968px) {
             .container {
                 flex-direction: column;
@@ -147,7 +176,24 @@
             }
             
             .typing-text {
-                font-size: 3rem;
+                font-size: 3.5rem;
+            }
+            
+            .profile-image {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .arrow-container {
+                left: 50%;
+                top: -60px;
+                transform: translateX(-50%) rotate(90deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .typing-text {
+                font-size: 2.8rem;
             }
             
             .profile-image {
@@ -155,10 +201,20 @@
                 height: 300px;
             }
             
-            .arrow-container {
-                left: 50%;
-                top: -50px;
-                transform: translateX(-50%) rotate(90deg);
+            .elegant-arrow {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .elegant-arrow::before {
+                width: 60px;
+                height: 60px;
+                top: 20px;
+            }
+            
+            .elegant-arrow::after {
+                width: 80px;
+                top: 50px;
             }
         }
 
@@ -172,22 +228,8 @@
                 height: 250px;
             }
             
-            .arrow-3d {
-                width: 60px;
+            .cursor {
                 height: 60px;
-            }
-            
-            .arrow-3d::before {
-                border-left: 30px solid transparent;
-                border-right: 30px solid transparent;
-                border-top: 45px solid #fff;
-            }
-            
-            .arrow-3d::after {
-                width: 15px;
-                height: 45px;
-                top: 45px;
-                left: 22.5px;
             }
         }
     </style>
@@ -198,15 +240,16 @@
             <div class="typing-text" id="typing-text"></div>
             
             <div class="content-placeholder">
-                <p>Aquí irá información detallada sobre tu experiencia, habilidades y proyectos.</p>
-                <p>Puedes describir tu trayectoria profesional, tecnologías que manejas y tus logros más importantes.</p>
-                <p>Esta sección estará disponible próximamente con contenido personalizado.</p>
+                <p>• Especialista en desarrollo de sistemas digitales</p>
+                <p>• Experiencia en tecnologías modernas y escalables</p>
+                <p>• Enfoque en soluciones innovadoras y eficientes</p>
+                <p>• Comprometido con la excelencia técnica</p>
             </div>
         </div>
         
         <div class="image-section">
             <div class="arrow-container">
-                <div class="arrow-3d"></div>
+                <div class="elegant-arrow"></div>
             </div>
             
             <div class="profile-image"></div>
@@ -215,7 +258,7 @@
 
     <script>
         // Animación de escritura
-        const text = "Información Sobre Mí";
+        const text = "INFORMACIÓN SOBRE MÍ";
         const typingElement = document.getElementById('typing-text');
         const cursor = document.createElement('span');
         cursor.className = 'cursor';
@@ -227,7 +270,7 @@
                 typingElement.innerHTML = text.substring(0, i+1);
                 typingElement.appendChild(cursor);
                 i++;
-                setTimeout(typeWriter, 150);
+                setTimeout(typeWriter, 120);
             } else {
                 typingElement.appendChild(cursor);
             }
