@@ -65,14 +65,13 @@
         }
 
         .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 80px;
             align-items: center;
         }
 
-        /* Text Content */
         .text-content {
+            flex: 1;
             opacity: 0;
             transform: translateX(-50px);
             animation: slideInLeft 1s ease-out 0.5s forwards;
@@ -208,6 +207,7 @@
 
         /* Image Content */
         .image-content {
+            flex: 1;
             position: relative;
             opacity: 0;
             transform: translateX(50px);
@@ -280,16 +280,31 @@
             100% { transform: translateX(-50%) translateY(20px); opacity: 0; }
         }
 
-        /* Responsive - SOLO MÓVIL */
+        /* RESPONSIVE - ORDEN CORREGIDO */
         @media (max-width: 968px) {
             .hero-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
                 text-align: center;
             }
 
+            .text-content {
+                display: contents; /* Permite reordenar los hijos */
+            }
+
+            .greeting {
+                order: 1;
+            }
+
             .name {
+                order: 2;
                 font-size: 3rem;
+            }
+
+            .image-content {
+                order: 3; /* IMAGEN SUBIDA AL PUESTO 3 */
+                width: 100%;
             }
 
             .profile-container {
@@ -297,7 +312,18 @@
                 height: 300px;
             }
 
+            .title {
+                order: 4; /* TÍTULO BAJADO AL PUESTO 4 */
+                margin-bottom: 20px;
+            }
+
+            .description {
+                order: 5;
+                margin: 20px auto 30px auto;
+            }
+
             .cta-buttons {
+                order: 6;
                 justify-content: center;
                 flex-wrap: nowrap;
                 gap: 15px;
@@ -312,13 +338,16 @@
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
             .name {
                 font-size: 2.5rem;
             }
 
             .title {
                 font-size: 1.2rem;
-                margin-bottom: 20px;
             }
 
             .profile-container {
@@ -328,7 +357,6 @@
 
             .description {
                 font-size: 1rem;
-                margin: 20px auto;
             }
 
             .cta-buttons {
