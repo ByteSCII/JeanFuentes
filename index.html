@@ -17,80 +17,32 @@
             color: #ffffff;
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-            display: flex;
-            min-height: 100vh;
-            align-items: center;
-            padding: 0 10%;
-        }
-
-        .text-section {
-            flex: 1;
-        }
-
-        .image-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-image {
-            width: 450px;
-            height: 450px;
-            background: linear-gradient(45deg, #0a0a0a, #000);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #333;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-image::before {
-            content: "IMAGEN PROFESIONAL";
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            z-index: 2;
-        }
-
-        .profile-image::after {
-            content: '';
-            position: absolute;
+            max-width: 800px;
             width: 100%;
-            height: 100%;
-            background: conic-gradient(
-                transparent, 
-                transparent, 
-                transparent, 
-                #333
-            );
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            text-align: center;
         }
 
         .typing-container {
-            position: relative;
             margin-bottom: 50px;
         }
 
         .typing-text {
-            font-size: 5rem;
+            font-size: 3rem;
             font-weight: 900;
-            line-height: 1.1;
-            color: #222;
+            line-height: 1.2;
+            color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             position: relative;
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .typing-text .letter {
@@ -107,41 +59,41 @@
             background: linear-gradient(
                 90deg,
                 transparent 0%,
-                #e0e0e0 20%,
-                #ffffff 50%,
-                #e0e0e0 80%,
+                #ffffff 30%,
+                #f0f0f0 50%,
+                #ffffff 70%,
                 transparent 100%
             );
             -webkit-background-clip: text;
             background-clip: text;
             background-size: 200% 100%;
-            background-position: -100% 0;
+            background-position: -150% 0;
             opacity: 0;
-            animation: flashlight 3s ease-in-out infinite;
-            animation-delay: calc(var(--letter-index) * 0.1s);
+            animation: flashlight 4s ease-in-out infinite;
+            animation-delay: calc(var(--letter-index) * 0.3s);
         }
 
         @keyframes flashlight {
             0%, 100% {
                 opacity: 0;
-                background-position: -100% 0;
+                background-position: -150% 0;
             }
-            10%, 90% {
+            15%, 85% {
                 opacity: 1;
             }
             50% {
                 opacity: 1;
-                background-position: 200% 0;
+                background-position: 150% 0;
             }
         }
 
         .cursor {
             display: inline-block;
-            width: 4px;
-            background: #666;
-            margin-left: 5px;
-            animation: blink 1s infinite;
-            height: 80px;
+            width: 3px;
+            background: #d4af37;
+            margin-left: 4px;
+            animation: blink 1.2s infinite;
+            height: 50px;
             vertical-align: middle;
         }
 
@@ -150,81 +102,32 @@
             50% { opacity: 0; }
         }
 
-        .content-placeholder {
-            margin-top: 40px;
-            color: #444;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            border-left: 2px solid #333;
-            padding-left: 25px;
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #1a1a1a, #000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d4af37;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
         }
 
-        .content-placeholder p {
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .content-placeholder p:hover {
-            color: #666;
+        .profile-image::before {
+            content: "";
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .typing-text {
-                font-size: 4rem;
-            }
-            
-            .profile-image {
-                width: 400px;
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 968px) {
-            .container {
-                flex-direction: column;
-                padding: 100px 5% 50px;
-                text-align: center;
-            }
-            
-            .typing-text {
-                font-size: 3.5rem;
-            }
-            
-            .profile-image {
-                width: 350px;
-                height: 350px;
-                margin-top: 50px;
-            }
-            
-            .content-placeholder {
-                border-left: none;
-                border-top: 2px solid #333;
-                padding-left: 0;
-                padding-top: 25px;
-            }
-        }
-
         @media (max-width: 768px) {
             .typing-text {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
                 letter-spacing: 2px;
-            }
-            
-            .profile-image {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .cursor {
-                height: 60px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .typing-text {
-                font-size: 2rem;
-                letter-spacing: 1px;
             }
             
             .profile-image {
@@ -232,41 +135,41 @@
                 height: 250px;
             }
             
-            .content-placeholder {
-                font-size: 1.1rem;
+            .cursor {
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .typing-text {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .profile-image {
+                width: 200px;
+                height: 200px;
             }
             
             .cursor {
-                height: 45px;
+                height: 35px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="text-section">
-            <div class="typing-container">
-                <div class="typing-text" id="typing-text"></div>
-            </div>
-            
-            <div class="content-placeholder">
-                <p>• Desarrollo de sistemas digitales escalables</p>
-                <p>• Experiencia en tecnologías modernas</p>
-                <p>• Soluciones innovadoras y eficientes</p>
-                <p>• Enfoque en calidad y performance</p>
-            </div>
+        <div class="typing-container">
+            <div class="typing-text" id="typing-text"></div>
         </div>
         
-        <div class="image-section">
-            <div class="profile-image"></div>
-        </div>
+        <div class="profile-image"></div>
     </div>
 
     <script>
         const text = "INFORMACIÓN SOBRE MÍ";
         const typingElement = document.getElementById('typing-text');
         
-        // Crear las letras con el efecto de linterna
         function createLetters() {
             let html = '';
             for (let i = 0; i < text.length; i++) {
@@ -276,7 +179,6 @@
             typingElement.innerHTML = html;
         }
         
-        // Iniciar cuando la página cargue
         window.onload = function() {
             createLetters();
         };
